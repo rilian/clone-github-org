@@ -1,7 +1,7 @@
 clone-github-org
 ================
 
-Emergency backup of particular GitHub organization repos
+Emergency backup of your GitHub organizations repos
 
 Usage
 -----
@@ -12,5 +12,5 @@ Usage
 
 ```
 bundle install
-ORG=xxxxxxxxx TOKEN=xxxxxxxxx ruby clone.rb
+ORG=xxx,yyy TOKEN=zzz ruby clone.rb
 ```

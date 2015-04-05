@@ -3,7 +3,12 @@ require 'byebug'
 
 client = Octokit::Client.new(access_token: ENV['TOKEN'])
 
-repos = client.org_repositories(ENV['ORG'], per_page: 1000).collect{|e| e[:full_name]}.shuffle
+# Most recently pushed code goes first
+repos = client
+  .org_repositories(ENV['ORG'], per_page: 1000)
+  .sort{|a,b| b[:pushed_at] <=> a[:pushed_at]}
+  .collect{|e| e[:full_name]}
+
 puts "Found #{repos.size} repos: #{repos.join(' ')}"
 
 timestamp = Time.now.to_i.to_s
